@@ -1,0 +1,66 @@
+<section class="skill-container">
+  <h2>Habilidades</h2>
+  <p>Acompanhe sua evolução em cada área.</p>
+
+  <div class="skill-form">
+    <h3>Nova habilidade</h3>
+
+    <label for="skill-name">Nome</label>
+    <input id="skill-name" type="text" [(ngModel)]="newSkillName" placeholder="Ex.: Python" />
+
+    <label for="skill-description">Descrição</label>
+    <textarea
+      id="skill-description"
+      [(ngModel)]="newSkillDescription"
+      placeholder="Descreva o que deseja aprender"
+    ></textarea>
+
+    <button (click)="addSkill()">Adicionar habilidade</button>
+  </div>
+
+  <div class="skill-list">
+    @for (skill of gameState.skills(); track skill.id) {
+      <article class="skill-card">
+        @if (editingSkillId === skill.id) {
+          <div class="skill-edit-form">
+            <label>Nome</label>
+            <input type="text" [(ngModel)]="editSkillName" />
+
+            <label>Descrição</label>
+            <textarea [(ngModel)]="editSkillDescription"></textarea>
+
+            <div class="skill-actions">
+              <button (click)="saveSkill()">Salvar</button>
+
+              <button (click)="cancelEditing()">Cancelar</button>
+            </div>
+          </div>
+        } @else {
+          <div class="skill-info">
+            <h3>{{ skill.name }}</h3>
+            <p>{{ skill.description }}</p>
+          </div>
+
+          <div class="skill-progress">
+            <div class="skill-level">
+              <span>Nível {{ getSkillLevel(skill.experience) }}</span>
+              <span>{{ getSkillProgress(skill.experience) }}/100 XP</span>
+            </div>
+
+            <div class="progress-bar">
+              <div class="progress-fill" [style.width.%]="getSkillProgress(skill.experience)"></div>
+            </div>
+          </div>
+
+          <div class="skill-experience">{{ skill.experience }} XP</div>
+
+          <div class="skill-actions">
+            <button class="edit-button" (click)="startEditing(skill)">Editar</button>
+
+            <button class="delete-button" (click)="deleteSkill(skill.id)">Excluir</button>
+          </div>
+        }
+      </article>
+    }
+  </div>
+</section>

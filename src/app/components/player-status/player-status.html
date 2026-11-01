@@ -1,0 +1,60 @@
+<section class="player-card">
+  <div class="player-header">
+    <div>
+      <span class="subtitle">AVENTUREIRO</span>
+      <h2>{{ playerName }}</h2>
+    </div>
+
+    <div class="level">NÍVEL {{ gameState.level }}</div>
+  </div>
+
+  <div class="experience-info">
+    <strong>{{ gameState.experience() }} XP TOTAL</strong>
+
+    <span>
+      {{ gameState.experienceInCurrentLevel }} / {{ gameState.experienceToNextLevel }} XP
+    </span>
+  </div>
+
+  <div class="experience-bar">
+    <div
+      class="experience-progress"
+      [style.width.%]="(gameState.experienceInCurrentLevel / gameState.experienceToNextLevel) * 100"
+    ></div>
+  </div>
+
+  <section class="study-form">
+    <h3>Registrar sessão</h3>
+
+    <label for="minutes">Tempo estudado (minutos)</label>
+
+    <input id="minutes" type="number" [(ngModel)]="studyMinutes" min="1" />
+
+    <label for="skill">Habilidade estudada</label>
+
+    <select id="skill" [(ngModel)]="selectedSkillId">
+     @for (skill of gameState.skills(); track skill.id) {
+        <option [ngValue]="skill.id">
+          {{ skill.name }}
+        </option>
+      }
+    </select>
+
+    <button (click)="registerStudy()">Finalizar sessão</button>
+  </section>
+
+  <section class="activity-history">
+    <h3>Histórico de atividades</h3>
+
+    @for (activity of gameState.activities; track $index) {
+      <div class="activity">
+        <div>
+          <strong>{{ activity.minutes }} minutos de estudo</strong>
+          <p>{{ activity.date | date: 'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+
+        <span>+{{ activity.experience }} XP</span>
+      </div>
+    }
+  </section>
+</section>

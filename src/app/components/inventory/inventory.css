@@ -1,0 +1,122 @@
+.inventory-container {
+  margin-top: 24px;
+}
+
+.inventory-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.inventory-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  opacity: 0.65;
+  transition: 0.2s ease;
+}
+
+.inventory-card.owned {
+  opacity: 1;
+  border-color: #eab308;
+  background: #292524;
+}
+
+.item-icon {
+  font-size: 36px;
+}
+
+.item-info {
+  flex: 1;
+}
+
+.item-info h3 {
+  margin: 0 0 6px;
+  color: #f8fafc;
+}
+
+.item-info p {
+  margin: 0 0 8px;
+  color: #cbd5e1;
+  font-size: 14px;
+}
+
+.item-type {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.item-actions button {
+  padding: 9px 14px;
+  border: none;
+  border-radius: 6px;
+  background: #2563eb;
+  color: white;
+  cursor: pointer;
+}
+
+.item-actions button:hover {
+  filter: brightness(1.15);
+}
+
+.owned-label {
+  color: #facc15;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+@media (max-width: 600px) {
+  .inventory-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+.item-requirement {
+  font-size: 12px;
+  color: #60a5fa;
+  margin-top: 6px;
+}
+
+.locked-label {
+  color: #94a3b8;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.inventory-card:not(.owned) {
+  border-color: #334155;
+}
+
+.inventory-card.owned {
+  border-color: #eab308;
+  background: #292524;
+}
+
+.locked-label {
+  display: inline-block;
+  padding: 7px 10px;
+  background: #334155;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: 12px;
+}
+
+
+.inventory-card:has(.equipped-button) {
+  border-color: #22c55e;
+  background: #172e2a;
+}
+
+.equipped-button {
+  background: #15803d !important;
+  color: white;
+}
+
+.equipped-button:hover {
+  background: #166534 !important;
+}

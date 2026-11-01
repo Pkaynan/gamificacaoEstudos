@@ -1,0 +1,27 @@
+<section class="achievement-container">
+  <h2>Conquistas</h2>
+  <p>Suas realizações ao longo da jornada.</p>
+
+  <div class="achievement-list">
+    @for (achievement of gameState.achievements(); track achievement.id) {
+      <article class="achievement-card" [class.unlocked]="achievement.unlocked">
+        <div class="achievement-icon">
+          {{ achievement.icon }}
+        </div>
+
+        <div class="achievement-info">
+          <h3>{{ achievement.title }}</h3>
+          <p>{{ achievement.description }}</p>
+
+          <p class="achievement-progress">
+            {{ getAchievementProgress(achievement.id) }}
+          </p>
+
+          <span>
+            {{ achievement.unlocked ? 'Desbloqueada' : 'Bloqueada' }}
+          </span>
+        </div>
+      </article>
+    }
+  </div>
+</section>

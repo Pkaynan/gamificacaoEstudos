@@ -1,0 +1,140 @@
+<section class="mission-container">
+  <h2>Quadro de missões</h2>
+  <p>Seus próximos desafios aguardam.</p>
+
+  <!-- Formulário de criação -->
+  <div class="mission-form">
+    <h3>Nova missão</h3>
+
+    <label for="mission-title">Título</label>
+    <input
+      id="mission-title"
+      type="text"
+      [(ngModel)]="newMissionTitle"
+      placeholder="Ex.: Estudar Java por 2 horas"
+    />
+
+    <label for="mission-description">Descrição</label>
+    <textarea
+      id="mission-description"
+      [(ngModel)]="newMissionDescription"
+      placeholder="Descreva o objetivo da missão"
+    ></textarea>
+
+    <label for="mission-category">Categoria</label>
+    <select
+      id="mission-category"
+      [(ngModel)]="newMissionCategory"
+    >
+      @for (category of categories; track category) {
+        <option [value]="category">{{ category }}</option>
+      }
+    </select>
+
+    <label for="mission-reward">Recompensa em XP</label>
+    <input
+      id="mission-reward"
+      type="number"
+      [(ngModel)]="newMissionReward"
+      min="1"
+    />
+
+    <button class="create-button" (click)="addMission()">
+      Criar missão
+    </button>
+  </div>
+
+  <!-- Lista de missões -->
+  <div class="mission-list">
+    @for (mission of gameState.missions; track mission.id) {
+      <article class="mission-card">
+
+        @if (editingMissionId === mission.id) {
+          <!-- Modo de edição -->
+          <div class="mission-edit-form">
+
+            <label>Título</label>
+            <input
+              type="text"
+              [(ngModel)]="editMissionTitle"
+            />
+
+            <label>Descrição</label>
+            <textarea
+              [(ngModel)]="editMissionDescription"
+            ></textarea>
+
+            <label>Categoria</label>
+            <select [(ngModel)]="editMissionCategory">
+              @for (category of categories; track category) {
+                <option [value]="category">{{ category }}</option>
+              }
+            </select>
+
+            <label>Recompensa em XP</label>
+            <input
+              type="number"
+              min="1"
+              [(ngModel)]="editMissionReward"
+            />
+
+            <div class="edit-actions">
+              <button
+                class="complete-button"
+                (click)="saveMission()"
+              >
+                Salvar
+              </button>
+
+              <button
+                class="delete-button"
+                (click)="cancelEditing()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+
+        } @else {
+          <!-- Modo de visualização -->
+          <div class="mission-info">
+            <h3>{{ mission.title }}</h3>
+            <p>{{ mission.description }}</p>
+
+            <span class="mission-category">
+              {{ mission.category ?? 'Sem categoria' }}
+            </span>
+          </div>
+
+          <div class="mission-actions">
+            <span class="mission-reward">
+              +{{ mission.reward }} XP
+            </span>
+
+            <button
+              class="complete-button"
+              [disabled]="mission.completed"
+              (click)="gameState.completeMission(mission.id)"
+            >
+              {{ mission.completed ? 'Concluída' : 'Concluir missão' }}
+            </button>
+
+            <button
+              class="edit-button"
+              (click)="startEditing(mission)"
+            >
+              Editar
+            </button>
+
+            <button
+              class="delete-button"
+              (click)="deleteMission(mission.id)"
+            >
+              Excluir
+            </button>
+          </div>
+        }
+      </article>
+    }
+  </div>
+</section>

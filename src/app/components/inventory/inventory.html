@@ -1,0 +1,42 @@
+<section class="inventory-container">
+  <h2>Inventário</h2>
+  <p>Conheça os itens disponíveis e suas recompensas.</p>
+
+  <div class="inventory-list">
+    @for (item of gameState.items(); track item.id) {
+      <article class="inventory-card" [class.owned]="item.owned">
+        <div class="item-icon">
+          {{ item.icon }}
+        </div>
+
+        <div class="item-info">
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.description }}</p>
+
+          <span class="item-type">{{ item.type }}</span>
+          <p class="item-requirement">Requer {{ item.requiredExperience }} XP</p>
+        </div>
+
+        <div class="item-actions">
+          <div class="item-actions">
+            @if (item.owned) {
+              @if (item.equipped) {
+                <button class="equipped-button" (click)="gameState.toggleEquipItem(item.id)">
+                  Desequipar
+                </button>
+              } @else {
+                <button (click)="gameState.toggleEquipItem(item.id)">Equipar</button>
+              }
+            } @else if (gameState.experience() >= item.requiredExperience) {
+              <button (click)="gameState.buyItem(item.id)">Adquirir</button>
+            } @else {
+              <span class="locked-label">
+                Faltam {{ item.requiredExperience - gameState.experience() }} XP
+              </span>
+            }
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>

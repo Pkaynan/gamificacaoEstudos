@@ -1,0 +1,109 @@
+.player-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 24px;
+  color: white;
+}
+
+.player-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtitle {
+  color: #94a3b8;
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.player-header h2 {
+  margin-top: 8px;
+}
+
+.level {
+  background: #2563eb;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.experience-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  margin-bottom: 10px;
+}
+
+.experience-info span {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.experience-bar {
+  background: #334155;
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.experience-progress {
+  background: #60a5fa;
+  height: 100%;
+  transition: width 0.3s ease;
+}
+
+.study-form,
+.activity-history {
+  margin-top: 30px;
+}
+
+.study-form input {
+  display: block;
+  margin: 10px 0;
+  padding: 10px;
+}
+
+.study-form button {
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.activity {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid #334155;
+}
+
+.activity p {
+  color: #94a3b8;
+  font-size: 13px;
+}
+
+.activity span {
+  color: #60a5fa;
+  font-weight: bold;
+}
+
+.player-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.study-form select {
+  display: block;
+  width: 100%;
+  max-width: 250px;
+  padding: 10px;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: #1e293b;
+  color: white;
+}

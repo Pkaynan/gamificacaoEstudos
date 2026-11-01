@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+.achievement-notification {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  background: #292524;
+  border: 1px solid #eab308;
+  border-radius: 12px;
+  color: #f8fafc;
+}
+
+.achievement-notification > span {
+  font-size: 32px;
+}
+
+.achievement-notification p {
+  margin: 4px 0;
+  color: #facc15;
+}
+
+.achievement-notification small {
+  color: #cbd5e1;
+}
+
+.achievement-notification button {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
