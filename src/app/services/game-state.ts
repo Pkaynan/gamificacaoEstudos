@@ -422,4 +422,20 @@ export class GameState {
 
     this.saveProgress();
   }
+
+  completeMission(missionId: number) {
+    const mission = this.missions.find((mission) => mission.id === missionId);
+
+    if (!mission || mission.completed) {
+      return;
+    }
+
+    this.missions = this.missions.map((mission) =>
+      mission.id === missionId ? { ...mission, completed: true } : mission,
+    );
+
+    this.experience.update((current) => current + mission.reward);
+
+    this.checkAchievements();
+  }
 }

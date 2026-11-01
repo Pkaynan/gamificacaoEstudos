@@ -92,4 +92,5 @@ export class MissionList {
 
     this.cancelEditing();
   }
+  
 }
